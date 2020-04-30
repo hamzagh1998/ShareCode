@@ -18,7 +18,7 @@ python3.6 or above
 
 ### Installing
 
-To get a development env running
+To get the development env running
 
 install all the packages inside the requirements.txt file
 ```
