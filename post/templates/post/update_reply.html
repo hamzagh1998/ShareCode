@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+  <div class="container-fluid">
+    <div class="row mt-2">
+      <div class="col-xm-12 col-sm-12 col-md-8 offset-md-2 col-lg-8 offset-lg-2">
+        <div class="card">
+          <div class="card-body">
+            <fieldset>
+              <legend class="border-bottom mb-4 text-secondary">Updating the comment</legend>
+            </fieldset>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-outline-success" type="submit" value="Save">
+            <a class="btn btn-outline-secondary" href="{% url 'post:detail' reply.post.slug %}">Return</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

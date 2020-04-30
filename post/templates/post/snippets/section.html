@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="main-section">
+  {% if request.user.profile.first_name or not request.user.is_authenticated or request.user.is_superuser%}
+    <section>
+      <div class="row">
+        <div align="center" class="col-md-12">
+          <img class="head-img img-fluid" src="{% static 'img/Code.jpg' %}">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col-xs-12 col-sm-2 col-md-3 col-lg-3">
+          <div class="card mt-1">
+            <div class="card-body">
+              <p class="text-secondary">{% now "H:i d/M/Y" %}</p>
+              <h4 class="text-primary">Catrgories :</h4>
+              <hr>
+              <form class="form-group" method="post">
+                {% csrf_token %}
+                <select class="form-control" name="filter">
+                  <option value="all">all</option>
+                  <option value="python">python</option>
+                  <option value="php">php</option>
+                  <option value="java">java</option>
+                  <option value="c/c++">c/c++</option>
+                  <option value="web">web</option>
+                  <option value="AI">AI</option>
+                  <option value="other">other</option>
+                </select>
+                <input class="btn btn-secondary" type="submit" value="Aplly">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          {% for post in page_post %}
+            <div class="card mt-1">
+              <legend class="pl-2">
+                {% if post.author.profile.photo %}
+                  <img class="rounded-circle" src="{{ post.author.profile.photo.url }}" alt="" height="35px" width="35px">
+                {% endif %}
+                <a href="{% url 'post:user_posts' post.author.id %}">
+                  {{ post.author.profile.first_name }}
+                  {{ post.author.profile.last_name }}
+                </a>
+                <small class="text-secondary">
+                  {% if post.likes.count > 0 %}
+                    {{ post.likes.count }} Like{{ post.likes.count|pluralize }}
+                  {% endif %}
+                  category: {{ post.category }}
+                </small>
+              </legend>
+              <h1 class="pl-2"><a href="{% url 'post:detail' post.slug %}">{{ post.title }}</a></h1>
+              {% if post.post_image %}
+                <img src="{{ post.post_image.url }}" alt="" height="350px">
+              {% endif %}
+              <div class="card-body">
+                <p>{{ post.summary|safe }}</p>
+                <p>Posted in {{ post.date_posted|timesince }} ago</p>
+                <a href="{% url 'post:detail' post.slug %}">See all the post</a>
+              </div>
+              {% if request.user == post.author %}
+                <p><a class="btn btn-warning" href="{% url 'post:update' post.id %}">Update</a> <a class="btn btn-danger" href="{% url 'post:delete' post.id %}">Delete</a></p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+          <div class="card mt-1">
+            <div align="center" class="card-body">
+              <img src="{% static 'img/brand.png' %}" alt="">
+              <p class="text-center"><a href="{% url 'post:post_form' %}">Create new post</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% else %}
+    <h3 class="text-secondary text-center">You must complete your profile first please<a href="{% url 'users:complete_profile' %}"> click here</a></h3>
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-6 offset-3">
+        <div class="pagination">
+          <span class="step-links">
+              {% if page_post.has_previous %}
+                  <a class="btn btn-outline-info" href="?page=1">&laquo; first</a>
+                  <a class="btn btn-outline-info" href="?page={{ page_post.previous_page_number }}">previous</a>
+              {% endif %}
+
+              <span class="current">
+                  Page {{ page_post.number }}/{{ page_post.paginator.num_pages }}.
+              </span>
+
+              {% if page_post.has_next %}
+                  <a class="btn btn-outline-info" href="?page={{ page_post.next_page_number }}">next</a>
+                  <a class="btn btn-outline-info" href="?page={{ page_post.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

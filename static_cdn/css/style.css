@@ -1,0 +1,35 @@
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+  padding-top: 3.5rem;
+  background-color: #f2f2f2;
+}
+
+.navbar{
+  background-color: #D5D5D5;
+}
+
+.main-section {
+  background-color: #f2f2f2;
+}
+
+.footer{
+  min-height: 50px;
+}
+
+.head-img {
+  max-width: 100%;
+  height: auto;
+  opacity: 0.65;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#reply_form {
+  text-align: center;
+}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="col-xs-12 col-sm-12 col-md-8 offset-md-2 col-lg-8 offset-lg-2">
+    {% if user_posts %}
+      <h3 class="text-secondary mt-1">
+        <img class="rounded-circle" src="{{ user_posts.first.author.profile.photo.url }}" alt="" width="40px" height="40px">
+        {{ user_posts.first.author.profile.first_name|capfirst }} has {{ user_posts.count }} Post{{ user_posts|pluralize }}
+      </h3>
+      {% for post in user_posts %}
+        <div class="card">
+          <h1 class="pl-2"><a href="{% url 'post:detail' post.slug %}">{{ post.title }}</a></h1>
+          <img src="{{ post.post_image.url }}" alt="" height="350px">
+          <div class="card-body">
+            <p>{{ post.summary|safe }}</p>
+            <a href="{% url 'post:detail' post.slug %}">See all post</a>
+          </div>
+          {% if request.user == post.author %}
+            <p><a class="btn btn-warning" href="{% url 'post:update' post.id %}">Update</a> <a class="btn btn-danger" href="{% url 'post:delete' post.id %}">Delete</a></p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+{% endblock %}
