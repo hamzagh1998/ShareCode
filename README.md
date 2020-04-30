@@ -22,7 +22,7 @@ To get the development env running
 
 install all the packages inside the requirements.txt file
 ```
-python -m requirements.txt
+python -m pip install -r requirements.txt
 ```
 *note: if the process didn't work try to download the packeges one by one
 
