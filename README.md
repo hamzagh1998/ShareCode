@@ -1,12 +1,12 @@
 # Project Title
 
 Full-featured website created with Django, the web development framework for Python.
-
-  Register, update, authenticate, delete users
-  Blog posting (Create, Retrieve, Update, Delete - CRUD)
-  Building a comment/reply system
-  Using filters
-
+<ul>
+  <li>Register, update, authenticate, delete users</li>
+  <li>Blog posting (Create, Retrieve, Update, Delete - CRUD)</li>
+  <li>Building a comment/reply system</li>
+  <li>Using filters<li>
+</ul>
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
