@@ -24,6 +24,7 @@ install all the packages inside the requirements.txt file
 ```
 python -m requirements.txt
 ```
+*note: if the process didn't work try to download the packeges one by one
 
 ## Running the tests
 
@@ -37,11 +38,6 @@ python manage.py makemigrations
 And migrate
 ```
 python manage.py migrate
-```
-
-Collect the staticfiles
-```
-python manage.py collectstatic
 ```
 
 And create superuser
