@@ -26,6 +26,8 @@ python -m requirements.txt
 
 ## Running the tests
 
+First create media folder inside the src folder
+
 Make the migrations
 ```
 python manage.py makemigrations
