@@ -52,4 +52,4 @@ python manage.py runserver
 
 ## Authors
 
-* **Hamza Ghenimi** - *Initial work* - [PurpleBooth](https://github.com/hamzagh1998/ShareCode.git)
+* **Hamza Ghenimi** - *Initial work* - [ShareCode](https://github.com/hamzagh1998/ShareCode.git)
