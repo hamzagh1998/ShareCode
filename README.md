@@ -1,4 +1,4 @@
-# Project Title
+# ShareCode
 
 Full-featured website created with Django, the web development framework for Python.
 <ul>
