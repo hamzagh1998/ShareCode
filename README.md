@@ -24,11 +24,8 @@ install all the packages inside the requirements.txt file
 ```
 python -m pip install -r requirements.txt
 ```
-*note: if the process didn't work try to download the packeges one by one
 
 ## Running the tests
-
-First create media folder inside the src folder
 
 Make the migrations
 ```
@@ -40,7 +37,7 @@ And migrate
 python manage.py migrate
 ```
 
-And create superuser
+then create superuser
 ```
 python manage.py createsuperuser
 ```
